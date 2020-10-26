@@ -1,0 +1,104 @@
+<div id="reporteProdss" *ngIf="false">
+    <app-reporte-prod></app-reporte-prod>
+</div>
+<app-header></app-header>
+<div class="container mt-4 " style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+
+    <div class="dataDates mt-3 mb-4 ">
+
+        <label for="fechaInit">Fecha Inventario:</label>
+        <div class="d">
+            <input type="date" id="fechaInit" class="input-control" value="{{ datenow }}">
+            <div class="formato">
+                <span class="icon-calendar"></span> (dd/mm/yyyy)
+            </div>
+        </div>
+    </div>
+    <div class="User" style="text-align: right;">
+        <p>
+            <strong>Usuario: </strong> {{user}}<br> Filtrado por: <strong style="color: steelblue;"> {{filter}}
+            </strong>, Y tienes <strong style="color: steelblue;">
+            {{prodInv}}</strong> producto(s) inventariado
+        </p>
+        <button type="button" title="filtrar reporte" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">
+            <span class=" icon-equalizer"></span>
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span> Filtrar por otros parámetros.
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="filtros">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <div class="display d-flex">
+                                        <label for="inpts"><span style="color: steelblue;" class="icon-search"></span></label>
+                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por Farmacia..." [(ngModel)]="filterPost" name="filterPost" (keyup)="getDep(filterPost)">
+                                    </div>
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                      <strong>Por Local:</strong>
+                                       Actualmente tiene(s), <strong>
+                                            {{cont}}  </strong> Local(es), registrado en la base de datos.
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getInvent(c.nombre)" *ngFor="let c of dataQRExtract">
+                                        {{c.nombre}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="tableReporte" style="height: 380px; overflow-y: auto;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Cod. Placa</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Custodio</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Fecha de toma Inv.</th>
+                <th scope="col" title="Eliminar informe"><span class="icon-trash"></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of arrInv">
+                <td>{{a.placaInv}}</td>
+                <td>{{a.descripInv}}</td>
+                <td>{{a.apellido}} {{a.nombre}}</td>
+                <td title=" Cod. ciudad: Guayaquil = 001 | Duran = 002 ">
+                    {{a.ciudad}} / {{a.campoA}} / {{a.farmacia}}
+                </td>
+                <td> {{a.fechaInv | date: 'dd/MM/yyyy'}}</td>
+                <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease">
+                    <span class="icon-trash"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" id="prods" (click)="prints()"><span class="icon-print"></span>Imprimir Reporte</button>
+    <button class="btn btn-danger" (click)="showRep(true)">Reporte Ingreso de activos</button>
+</div>
