@@ -1,4 +1,11 @@
-<header class="head pl-4 pr-4 display d-flex justify-content-between align-items-center">
+<div class="head container-fluid">
+    <div class="rightDiv"></div>
+    <div class="ofButton"></div>
+    <div class="picture"></div>
+</div>
+
+
+<!-- <header class="head pl-4 pr-4 display d-flex justify-content-between align-items-center">
     <div class="m display d-flex justify-content-sm-start align-items-center">
         <img src="../../assets/icono-act-fijo.png" width="65px" height="auto">
         <p style="font-size: 18pt;">Aplicación de Inventario fijo. |
@@ -29,9 +36,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-                <a class="nav-link" [routerLink]="[ '/Conf' ]"><span class="icon-cog"></span>Configuración<span class="sr-only">(current)</span></a>
-            </li> -->
+
             <li class="nav-item" id="c">
                 <a class="nav-link" (mouseover)="active('c', mActivos, 'a', 'd', '/QRData')" (click)="active('c', report, 'a', 'd', '/QRData')">
                    {{mActivos}}
@@ -47,8 +52,8 @@
                    {{report}}
                 </a>
             </li>
-            
-            
+
+
             <li class="nav-item" id="app" *ngIf="app">
                 <a class="btn btn-success" href="https://play.google.com/store/apps/details?id=com.gamma.scan" target="_BLANK">
                     <span class=" icon-mobile-2"></span> Toma de Inventario
@@ -56,4 +61,4 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->

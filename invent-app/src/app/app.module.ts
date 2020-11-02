@@ -15,6 +15,7 @@ import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ServiceWorkerModule } from '@angular/service-worker';
 //#region Angular Material
 import {A11yModule} from '@angular/cdk/a11y';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -59,6 +60,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
+import { environment } from 'src/environments/environment';
 // import { FilterPipe } from './pipes/filter.pipe';
 
 //#endregion
@@ -130,6 +132,8 @@ import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ServiceWorkerModule
+    .register('/ngsw-worker.js'),
     RouterModule.forRoot([
       { path: 'Conf', component: ConfigurationsComponent },
       { path: 'HomeView', component: HomeViewComponent },

@@ -8,6 +8,7 @@ import { Demo } from '../Models/Demo';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
+import { ServicesWorkerService } from '../Services/services-worker.service';
 
 @Component({
   selector: 'app-home-view',
@@ -29,24 +30,28 @@ export class HomeViewComponent implements OnInit {
   public invTrue: string;
   public invFalse: string;
 
-  public data: Demo = {
-    Placa: this.invPlaca,
-    Nombre_P: this.invNombre,
-    Custodio: 'Nombre Test Custodio',
-    Ciudad: 'Nombre Test Ciudad',
-    // tslint:disable-next-line: no-unused-expression
-    Fecha_Back:  new Date(),
-    Fecha_Inv: this.dateInv,
-    Existe: this.invTrue
-  };
+  // public data: Demo = {
+  //   // Placa: this.invPlaca,
+  //   // Nombre_P: this.invNombre,
+  //   Custodio: 'Nombre Test Custodio',
+  //   Ciudad: 'Nombre Test Ciudad',
+  //   // tslint:disable-next-line: no-unused-expression
+  //   // Fecha_Back:  new Date(),
+  //   // Fecha_Inv: this.dateInv,
+  //   // Existe: this.invTrue
+  // };
 
   constructor(public placas: GQRService,
               public products: GQRService,
               public saveDemo: DemoService,
-              public router: Router) { }
+              public router: Router,
+              public sw: ServicesWorkerService) { }
 
   ngOnInit() {
     this.fechActual();
+
+    // this.sw.sw();
+
     // this.detectHeight();
     this.placas.getPlaca().subscribe( resp =>
        {
